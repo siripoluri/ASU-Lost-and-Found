@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ASU Lost & Found - Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Additional styles specific to the dashboard */
+    main { padding: 20px; }
+    #eventsSection h2, #eventDetailsSection h2 { margin-bottom: 20px; color: #00274C; }
+    #backToDashboardBtn {
+      background-color: #00274C;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-bottom: 15px;
+    }
+    #backToDashboardBtn:hover { background-color: #0059b3; }
+    .listingCard {
+      background: #fff;
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+    }
+    .listingCard p { margin: 5px 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>ASU Lost & Found Dashboard</h1>
+    <button id="logoutBtn">Logout</button>
+  </header>
+  <main>
+    <!-- Events List Section -->
+    <section id="eventsSection">
+      <h2>Upcoming ASU Events</h2>
+      <div id="eventsList">
+        <div class="eventCard" data-event="ASU Football Game">
+          <h3>ASU Football Game</h3>
+          <p>Date: 2025-04-15</p>
+        </div>
+        <div class="eventCard" data-event="ASU Concert Night">
+          <h3>ASU Concert Night</h3>
+          <p>Date: 2025-04-20</p>
+        </div>
+        <div class="eventCard" data-event="ASU Career Fair">
+          <h3>ASU Career Fair</h3>
+          <p>Date: 2025-04-25</p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Event Details Section (hidden by default) -->
+    <section id="eventDetailsSection" style="display:none;">
+      <button id="backToDashboardBtn">Back to Dashboard</button>
+      <h2 id="selectedEventName"></h2>
+      <div id="actionButtons">
+        <button id="reportLostBtn">Report Lost Item</button>
+        <button id="reportFoundBtn">Report Found Item</button>
+        <button id="searchListingsBtn">Search Listings</button>
+      </div>
+      
+      <!-- Container for dynamic forms and filters -->
+      <div id="formContainer"></div>
+      
+      <!-- Container for search listings -->
+      <div id="listingsContainer"></div>
+    </section>
+  </main>
+  <script src="dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ASU Lost & Found</title>
+  <style>
+    /* RESET & BOX SIZING */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* FULL-SCREEN BACKGROUND */
+    body {
+      font-family: Arial, sans-serif;
+      background: url('https://miro.medium.com/v2/resize:fit:1200/1*lTsp7lnRPGWqjd72StPDBg.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* HEADER */
+    header {
+      background-color: #7C1000; /* ASU maroon-ish */
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 2rem;
+      margin: 0;
+    }
+
+    /* MAIN CONTAINER */
+    .main-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* BUTTON CONTAINER (initial view) */
+    .button-container {
+      background-color: rgba(255, 255, 255, 0.85);
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      text-align: center;
+    }
+    .button-container h2 {
+      margin-bottom: 20px;
+      color: #7C1000;
+    }
+    .button-container button {
+      background-color: #7C1000;
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      margin: 0 10px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 1rem;
+      transition: background-color 0.3s;
+    }
+    .button-container button:hover {
+      background-color: #9F1E10;
+    }
+
+    /* FORM CONTAINERS (hidden by default) */
+    .form-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 320px;
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      padding: 20px;
+      transform: translate(-50%, -50%);
+      display: none;
+    }
+    .form-container.active {
+      display: block;
+    }
+    .form-container h2 {
+      margin-bottom: 15px;
+      color: #7C1000;
+      text-align: center;
+    }
+    .form-container label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+      color: #333;
+    }
+    .form-container input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+    .form-container button[type="submit"] {
+      width: 100%;
+      margin-top: 20px;
+      background-color: #7C1000;
+      color: #fff;
+      border: none;
+      padding: 12px;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .form-container button[type="submit"]:hover {
+      background-color: #9F1E10;
+    }
+    .error {
+      color: red;
+      margin-top: 5px;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+    .success {
+      color: green;
+      margin-top: 5px;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+    /* CLOSE BUTTON */
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #333;
+      cursor: pointer;
+      float: right;
+    }
+    .close-btn:hover {
+      color: #666;
+    }
+
+    /* FORGOT PASSWORD LINK */
+    .forgot-password-link {
+      margin-top: 10px;
+      text-align: right;
+    }
+    .forgot-password-link a {
+      color: #7C1000;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    .forgot-password-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>ASU Lost & Found</h1>
+  </header>
+
+  <div class="main-container">
+    <!-- Initial Button View -->
+    <div class="button-container" id="buttonContainer">
+      <h2>Welcome!</h2>
+      <button id="signUpBtn">Sign Up</button>
+      <button id="loginBtn">Login</button>
+    </div>
+
+    <!-- Sign Up Form -->
+    <div class="form-container" id="signUpFormContainer">
+      <button class="close-btn" id="closeSignUp">x</button>
+      <h2>Sign Up</h2>
+      <form id="signUpForm">
+        <label for="signupName">Name</label>
+        <input type="text" id="signupName" placeholder="Your Name" required>
+        
+        <label for="signupEmail">ASU Email</label>
+        <input type="email" id="signupEmail" placeholder="name@asu.edu" required>
+        
+        <label for="signupPassword">Password</label>
+        <input type="password" id="signupPassword" placeholder="Minimum 6 characters" required>
+        
+        <button type="submit">Sign Up</button>
+        <div class="error" id="signupError"></div>
+        <div class="success" id="signupSuccess"></div>
+      </form>
+    </div>
+
+    <!-- Login Form -->
+    <div class="form-container" id="loginFormContainer">
+      <button class="close-btn" id="closeLogin">x</button>
+      <h2>Login</h2>
+      <form id="loginForm">
+        <label for="loginEmail">ASU Email</label>
+        <input type="email" id="loginEmail" placeholder="name@asu.edu" required>
+        
+        <label for="loginPassword">Password</label>
+        <input type="password" id="loginPassword" placeholder="Enter your password" required>
+
+        <!-- Forgot Password Link -->
+        <div class="forgot-password-link">
+          <a href="#" id="forgotPasswordLink">Forgot Password?</a>
+        </div>
+
+        <button type="submit">Login</button>
+        <div class="error" id="loginError"></div>
+      </form>
+    </div>
+
+    <!-- Forgot Password Form -->
+    <div class="form-container" id="forgotPasswordFormContainer">
+      <button class="close-btn" id="closeForgotPassword">x</button>
+      <h2>Reset Password</h2>
+      <form id="forgotPasswordForm">
+        <label for="forgotEmail">ASU Email</label>
+        <input type="email" id="forgotEmail" placeholder="name@asu.edu" required>
+        
+        <button type="submit">Send Reset Link</button>
+        <div class="error" id="forgotError"></div>
+        <div class="success" id="forgotSuccess"></div>
+      </form>
+    </div>
+
+  </div>
+
+  <script src="LoginPage.js"></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+/* General styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f8f8f8;
+}
+
+header {
+  background-color: #491205;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+nav {
+  margin-top: 10px;
+}
+
+main {
+  padding: 20px;
+}
+
+/* Forms Container */
+#formsContainer {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.formBox {
+  background: #fff;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  width: 45%;
+  min-width: 300px;
+}
+
+.formBox h3 {
+  margin-top: 0;
+}
+
+.formBox form label {
+  display: block;
+  margin-top: 10px;
+}
+
+.formBox form input,
+.formBox form button {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  box-sizing: border-box;
+}
+
+/* Reported Items Section */
+#reportedItemsSection {
+  margin-top: 40px;
+}
+
+#reportedItems .itemCard {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+
+#reportedItems .itemCard img {
+  max-width: 100px;
+  margin-right: 15px;
+}
+
+#reportedItems .itemCard .itemDetails {
+  display: inline-block;
+  vertical-align: top;
+}
